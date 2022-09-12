@@ -26,7 +26,7 @@ export class MasterViewComponent implements OnInit {
   }
 
   public rowEditDone(event: IGridEditDoneEventArgs) {
-    this.gridCrudSampleDataService.updateCustomer(event.newValue).subscribe(result => {
+    this.gridCrudSampleDataService.updateCustomer(event.rowData).subscribe(result => {
       // Customer updated;
     });
   }
