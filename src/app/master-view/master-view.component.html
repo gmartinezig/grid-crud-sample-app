@@ -1,18 +1,35 @@
-<igx-grid [data]="gridCrudSampleDataCustomer" primaryKey="customerId" displayDensity="cosy" [rowEditable]="true" [allowFiltering]="true" filterMode="excelStyleFilter" class="grid">
+<igx-grid
+  [data]="gridCrudSampleDataCustomer"
+  primaryKey="customerId"
+  displayDensity="cosy"
+  [rowEditable]="true"
+  [allowFiltering]="true"
+  filterMode="excelStyleFilter"
+  class="grid"
+  (rowAdded)="rowAdded($event)"
+  (rowEditDone)="rowEditDone($event)"
+  (rowDeleted)="rowDeleted($event)"
+>
+  <!-- cellEditDone could be used only when the data fields are optional,
+    otherwise it will throw a validation error on row creation.
+    (cellEditDone)="cellEditDone($event)"
+  -->
+  <!-- Bug: The actions strip is not being generated from AppBuilder -->
+  <igx-action-strip>
+    <igx-grid-editing-actions [addRow]="true"></igx-grid-editing-actions>
+  </igx-action-strip>
+
   <igx-grid-toolbar>
-    <igx-grid-toolbar-actions>
-      <igx-grid-toolbar-hiding></igx-grid-toolbar-hiding>
-    </igx-grid-toolbar-actions>
-    <igx-grid-toolbar-title>Grid Toolbar</igx-grid-toolbar-title>
+    <igx-grid-toolbar-title>Customers</igx-grid-toolbar-title>
   </igx-grid-toolbar>
   <igx-column header="customerId" field="customerId" dataType="string" [sortable]="true" [editable]="true" title="customerId"></igx-column>
   <igx-column header="companyName" field="companyName" dataType="string" [sortable]="true" [editable]="true" title="companyName"></igx-column>
   <igx-column header="contactName" field="contactName" dataType="string" [sortable]="true" [editable]="true" title="contactName"></igx-column>
-  <igx-column header="contactTitle" field="contactTitle" dataType="string" [sortable]="true" [editable]="true" [hidden]="true" title="contactTitle"></igx-column>
-  <igx-column header="street" field="address.street" dataType="string" [sortable]="true" [editable]="true" [hidden]="true" title="address.street"></igx-column>
+  <igx-column header="contactTitle" field="contactTitle" dataType="string" [sortable]="true" [editable]="true" title="contactTitle"></igx-column>
+  <igx-column header="street" field="address.street" dataType="string" [sortable]="true" [editable]="true" title="address.street"></igx-column>
   <igx-column header="city" field="address.city" dataType="string" [sortable]="true" [editable]="true" title="address.city"></igx-column>
-  <igx-column header="region" field="address.region" dataType="string" [sortable]="true" [editable]="true" [hidden]="true" title="address.region"></igx-column>
-  <igx-column header="postalCode" field="address.postalCode" dataType="string" [sortable]="true" [editable]="true" [hidden]="true" title="address.postalCode"></igx-column>
+  <igx-column header="region" field="address.region" dataType="string" [sortable]="true" [editable]="true" title="address.region"></igx-column>
+  <igx-column header="postalCode" field="address.postalCode" dataType="string" [sortable]="true" [editable]="true" title="address.postalCode"></igx-column>
   <igx-column header="country" field="address.country" dataType="string" [sortable]="true" [editable]="true" title="address.country"></igx-column>
-  <igx-column header="phone" field="address.phone" dataType="string" [sortable]="true" [editable]="true" [hidden]="true" title="address.phone"></igx-column>
+  <igx-column header="phone" field="address.phone" dataType="string" [sortable]="true" [editable]="true" title="address.phone"></igx-column>
 </igx-grid>

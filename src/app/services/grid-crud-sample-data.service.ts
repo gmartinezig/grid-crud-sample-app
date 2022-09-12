@@ -13,4 +13,16 @@ export class GridCrudSampleDataService {
   public getCustomer(): Observable<any> {
     return this.http.get(`${API_ENDPOINT}/Customer`);
   }
+
+  public addCustomer(customer: any) {
+    return this.http.post(`${API_ENDPOINT}/Customer`, customer);
+  }
+
+  public updateCustomer(customer: any) {
+    return this.http.put(`${API_ENDPOINT}/Customer`, customer);
+  }
+
+  public deleteCustomer(customerId: any) {
+    return this.http.delete(`${API_ENDPOINT}/Customer/${customerId}`);
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IGridEditDoneEventArgs, IRowDataEventArgs } from '@infragistics/igniteui-angular';
 import { GridCrudSampleDataService } from '../services/grid-crud-sample-data.service';
 
 @Component({
@@ -17,4 +18,29 @@ export class MasterViewComponent implements OnInit {
     // depending on implementation, data subscriptions might need to be unsubbed later
     this.gridCrudSampleDataService.getCustomer().subscribe(data => this.gridCrudSampleDataCustomer = data);
   }
+  
+  public rowAdded(event: IRowDataEventArgs) {
+    this.gridCrudSampleDataService.addCustomer(event.data).subscribe(result => {
+      // Customer added;
+    });
+  }
+
+  public rowEditDone(event: IGridEditDoneEventArgs) {
+    this.gridCrudSampleDataService.updateCustomer(event.newValue).subscribe(result => {
+      // Customer updated;
+    });
+  }
+
+  public cellEditDone(event: IGridEditDoneEventArgs) {
+    this.gridCrudSampleDataService.updateCustomer(event.rowData).subscribe(result => {
+      // Customer updated;
+    });
+  }
+
+  public rowDeleted(event: IRowDataEventArgs) {
+    this.gridCrudSampleDataService.deleteCustomer(event.data.customerId).subscribe(result => {
+        // Customer deleted;
+    });
+  }
+
 }
